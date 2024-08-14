@@ -1,0 +1,19 @@
+﻿{
+  "name": "com.lvl3mage.com.lvl3mage.noise-generation-toolkit",
+  "version": "1.0.0",
+  "displayName": "Noise Generation Toolkit",
+  "description": "A package that provides a set of tools for generating and sampling gradient noise in Unity",
+  "unity": "2021.3",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lvl3mage/NoiseGenerationToolkit.git"
+  },
+  "keywords": [
+  ],
+  "author": "lvl3mage",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lvl3mage/NoiseGenerationToolkit/issues"
+  },
+  "homepage": "https://github.com/lvl3mage/NoiseGenerationToolkit#readme"
+}

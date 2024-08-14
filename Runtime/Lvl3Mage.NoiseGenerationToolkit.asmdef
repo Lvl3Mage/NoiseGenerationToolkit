@@ -1,0 +1,18 @@
+{
+    "name": "Lvl3Mage.NoiseGenerationToolkit",
+    "rootNamespace": "Lvl3Mage.NoiseGenerationToolkit",
+    "references": [
+        "GUID:5c7f2999daf40054db0ef106b83006d9",
+        "GUID:3c4708e15158979499e235cb9c912381",
+        "GUID:48c9f6afdac61634db0e0f241c7d4d51"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
