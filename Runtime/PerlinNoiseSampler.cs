@@ -9,6 +9,14 @@ namespace Lvl3Mage.NoiseGenerationToolkit
 	[Serializable]
 	public class PerlinNoiseSampler
 	{
+		public void Reset(){
+			noiseScale = 1;
+			scrollSpeed = Vector2.zero;
+			offset = Vector2.zero;
+			octaves = 1;
+			lacunarity = 1;
+			persistence = 0.5f;
+		}
 		public PerlinNoiseSampler(){
 			noiseScale = 1;
 			scrollSpeed = Vector2.zero;
@@ -25,6 +33,7 @@ namespace Lvl3Mage.NoiseGenerationToolkit
 
 		[Tooltip("Amount of individual octaves the noise has")]
 		[SerializeField] [Min(1)] int octaves = 1;
+		[SerializeField] bool randomizeOctaveOffsets;
 
 		[Tooltip("How much the frequency of each octave increases with octave amount")]
 		[SerializeField] [Min(1)] float lacunarity = 1;
@@ -36,7 +45,7 @@ namespace Lvl3Mage.NoiseGenerationToolkit
 		[Texture2DPreview(hideProperty: true,
 			showDropdown: true,
 			text: "Perlin Noise Preview:",
-			width: 5,
+			width: 200,
 			updateMethodName: nameof(UpdatePreview))]
 		Texture2D preview;
 		void UpdatePreview()
@@ -59,25 +68,26 @@ namespace Lvl3Mage.NoiseGenerationToolkit
 		}
 		float SampleSource(Vector2 position){
 			float currentTime = Environment.TickCount*(float)1e-3;
-			Vector2 baseCoords = (position + scrollSpeed*currentTime)*noiseScale;
+			Vector2 baseCoords = (position + scrollSpeed*currentTime)*noiseScale + offset;
 			float bounds = 0;
 			float rawVal = 0;
-			Vector2 octaveOffset = Vector2.zero;
 			int hash = offset.GetHashCode();
 			
-			
+			// return RandFloat((int)Mathf.Floor(baseCoords.x));
 			float frequency = 1;
 			float amplitude = 1;
 			for(int i = 0; i < octaves; i++){
 				
 				
 				
-				Vector2 noiseCoords = baseCoords*frequency +offset;
-				float octaveVal = Mathf.PerlinNoise(noiseCoords.x + octaveOffset.x, noiseCoords.y + octaveOffset.y)*amplitude;
-				
-				//Randomize octave offset to avoid repeating patterns
-				octaveOffset = new Vector2(RandFloat(hash++),RandFloat(hash++));
-				
+				Vector2 noiseCoords = baseCoords;
+				if (randomizeOctaveOffsets){
+					noiseCoords += new Vector2(RandFloat(i)*1000, RandFloat(i*2)*1000);
+				}
+				noiseCoords *= frequency;
+				float octaveVal = Mathf.PerlinNoise(noiseCoords.x, noiseCoords.y)*amplitude;
+
+
 				rawVal += octaveVal;
 				bounds += amplitude;
 				
@@ -92,10 +102,16 @@ namespace Lvl3Mage.NoiseGenerationToolkit
 			//Todo test uniformity
 			float RandFloat(int seed)
 			{
-				float x = seed;
-				x *= 17179869183.0f;
-				x -= Mathf.Floor(x);
-				return x;
+				uint s = (uint)seed*0x9e3779b9;
+				s += 0xe120fc15;
+				s ^= s << 13;
+				s *= 571823589;
+				s ^= s >> 12;
+				s *= 821759831;
+				s ^= s >> 5;
+				s *= 265443236;
+				const float invMax = 1.0f / uint.MaxValue;
+				return s * invMax;
 			}
 		}
 

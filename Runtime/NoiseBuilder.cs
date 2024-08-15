@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Lvl3Mage.EditorDevToolkit.Runtime;
 using Lvl3Mage.EditorEnhancements.Runtime;
 using UnityEditor;
 using MyBox;
 using UnityEngine;
 using Lvl3Mage.MathToolkit;
+using UnityEngine.Serialization;
 
 namespace Lvl3Mage.NoiseGenerationToolkit
 {
@@ -80,10 +82,10 @@ namespace Lvl3Mage.NoiseGenerationToolkit
 				valueCombineMode = CombineMode.Assign;
 				valueCombineMode = CombineMode.Assign;
 			}
-			
-			[Header("Filter settings")]
-			[ActionButton("Reset filter settings", nameof(Reset), true, false)] [SerializeField]
+			[Space(10)]
+			[ActionButton(buttonText: "Reset Filter Settings", methodName: nameof(Reset), hideField: true)] [SerializeField]
 			string resetProp;
+			[Header("Filter settings")]
 			[EnumSelectableField(nameof(filterMode), (int)FilterMode.Value)] 
 			[SerializeField] float value;
 			[EnumSelectableField(nameof(filterMode), (int)FilterMode.Value)] 
@@ -284,16 +286,15 @@ namespace Lvl3Mage.NoiseGenerationToolkit
 		[ConditionalField(nameof(drawPreview))]
 		[SerializeField] [Range(1, 64)] int previewResolution = 25;
 		
-		[ConditionalField(nameof(drawPreview))] [SerializeField] bool drawSingleChannel;
-		[ConditionalField(nameof(drawSingleChannel), nameof(drawPreview))] [SerializeField] FilterStep.Channel previewChannel;
+		[ConditionalField(nameof(drawPreview))] [SerializeField] bool drawOutputChannel;
 		
 		[ConditionalField(nameof(drawPreview))] [SerializeField] FilterMode filterMode;
 		
 		public Color SamplePreview(Vector2 uv)
 		{
 			Vector3 sample = SampleVectorAt(uv*previewSampleSize);
-			if (drawSingleChannel){
-				float val = sample[(int)previewChannel];
+			if (drawOutputChannel){
+				float val = sample[(int)outputChannel];
 				sample = new Vector3(val,val,val);
 			}
 			return new Color(sample.x, sample.y, sample.z, 1);
@@ -302,7 +303,7 @@ namespace Lvl3Mage.NoiseGenerationToolkit
 		[ConditionalField(nameof(drawPreview)), Texture2DPreview(hideProperty: true,
 			 showDropdown: true,
 			 text: "Noise Preview:",
-			 width:100,
+			 width:200,
 			 updateMethodName: nameof(UpdatePreview))]
 		Texture2D preview;
 
