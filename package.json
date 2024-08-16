@@ -1,6 +1,6 @@
 ﻿{
   "name": "com.lvl3mage.noise-generation-toolkit",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "displayName": "Noise Generation Toolkit",
   "description": "A package that provides a set of tools for generating and sampling gradient noise in Unity",
   "unity": "2021.3",
