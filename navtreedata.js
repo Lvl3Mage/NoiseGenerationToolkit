@@ -31,8 +31,8 @@ var NAVTREE =
       [ "Documentation", "index.html#autotoc_md4", null ],
       [ "Author", "index.html#autotoc_md5", null ]
     ] ],
-    [ "[1.0.0] -", "a00089.html", null ],
-    [ "LICENSE", "a00090.html", null ],
+    [ "[1.0.0] -", "a00094.html", null ],
+    [ "LICENSE", "a00095.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],
