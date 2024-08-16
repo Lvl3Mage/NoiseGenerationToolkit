@@ -1,6 +1,6 @@
 ﻿{
   "name": "com.lvl3mage.noise-generation-toolkit",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "displayName": "Noise Generation Toolkit",
   "description": "A package that provides a set of tools for generating and sampling gradient noise in Unity",
   "unity": "2021.3",
@@ -11,8 +11,9 @@
   "keywords": [
   ],
   "dependencies": {
-    "com.lvl3mage.math-toolkit": "1.0.1",
-    "com.lvl3mage.editor-enhancements": "1.1.1",
+    "com.lvl3mage.math-toolkit": "1.0.2",
+    "com.lvl3mage.interpolation-toolkit": "1.1.0",
+    "com.lvl3mage.editor-enhancements": "1.1.3",
     "com.domybest.mybox": "1.8.0",
     "com.lvl3mage.editor-dev-toolkit": "1.1.1"
   },

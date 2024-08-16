@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Lvl3Mage.EditorDevToolkit.Runtime;
 using Lvl3Mage.EditorEnhancements.Runtime;
+using Lvl3Mage.InterpolationToolkit;
 using UnityEditor;
 using MyBox;
 using UnityEngine;
@@ -191,7 +192,7 @@ namespace Lvl3Mage.NoiseGenerationToolkit
 				},
 				{
 					FilterMode.RemapRange, 
-					(vec, filter, samplePrev) => Linear.TransformRange(samplePrev(vec), filter.oldRange, filter.newRange)
+					(vec, filter, samplePrev) => RangeTools.TransformRange(samplePrev(vec), filter.oldRange, filter.newRange)
 				},
 				{
 					FilterMode.SCurve,

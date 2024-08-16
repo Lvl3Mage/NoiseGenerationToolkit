@@ -95,7 +95,7 @@ namespace Lvl3Mage.NoiseGenerationToolkit
 				amplitude *= persistence;
 			}
 			
-			rawVal = Linear.TransformRange(rawVal,0,bounds, 0, 1);
+			rawVal = RangeTools.TransformRange(rawVal,0,bounds, 0, 1);
 			return rawVal;
 			
 			//Seems to be good enough for octave offset randomization
